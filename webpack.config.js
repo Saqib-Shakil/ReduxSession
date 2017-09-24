@@ -27,7 +27,7 @@ var config = {
 			include: RESOURCES_JSX,
 			loader: "babel-loader",
 			query: {
-		        presets: ['es2017', 'react']
+		        presets: ['es2017', 'react', 'stage-2']
 		    }
 		}]
 	}

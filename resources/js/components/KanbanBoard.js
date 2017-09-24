@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import List from './List';
+import { connect } from 'react-redux'
 
 class KanbanBoard extends Component {
   render(){
@@ -20,4 +21,6 @@ class KanbanBoard extends Component {
   }
 };
 
-export default KanbanBoard;
+export default connect(
+  (state)=>({ cards: state })
+)(KanbanBoard);
