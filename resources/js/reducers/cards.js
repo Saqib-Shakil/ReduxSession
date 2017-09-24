@@ -1,28 +1,36 @@
 export default (state = [], action) => {
     switch (action.type) {
         case 'TOGGLE':
-            return state.map(card =>
-                card.id === action.id ?
-                    {
-                        ...card,
-                        expanded: !card.expanded
-                    } : card
+        case 'TASK_TOGGLE':
+            return state.map(p =>
+                p.id === action.id ?
+                    card(p, action) :
+                    p
             );
 
-        case 'TASK_TOGGLE':
-            return state.map(card =>
-                card.id === action.id ?
-                    {
-                        ...card,
-                        tasks: card.tasks.map(task =>
-                            task.id === action.taskId ?
-                                {
-                                    ...task,
-                                    done: !task.done
-                                } : task)
-                    } : card
-            )
+        default:
+            return state;
+    }
+};
 
+export let card = (state = {}, action) => {
+    switch (action.type) {
+        case 'TOGGLE':
+            return {
+                ...card,
+                expanded: !card.expanded
+            }
+
+        case 'TASK_TOGGLE':
+            return {
+                ...card,
+                tasks: card.tasks.map(task =>
+                    task.id === action.taskId ?
+                        {
+                            ...task,
+                            done: !task.done
+                        } : task)
+            }
         default:
             return state;
     }
