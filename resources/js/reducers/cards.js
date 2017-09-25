@@ -7,7 +7,7 @@ export default (state = [], action) => {
         case TOGGLETASK:
         case ADDTASK:
             return state.map(p =>
-                p.id === action.id ?
+                p.id === action.cardId ?
                     card(p, action) :
                     p
             );

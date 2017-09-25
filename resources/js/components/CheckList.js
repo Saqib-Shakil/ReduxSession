@@ -1,18 +1,20 @@
 
 import React, { Component } from 'react';
-import { addTask } from '../actions'
+import { addTask, toggleTask } from '../actions'
 import { connect } from 'react-redux';
 class CheckList extends Component {
 
 	render() {
+		let { toggleTask, addTask, cardId } = this.props
+
 		let tasks = this.props.tasks.map((task) => (
 			<li key={task.id} className="checklist__task">
-				<input type="checkbox" defaultChecked={task.done} />
+				<input type="checkbox" checked={task.done} onChange={() => toggleTask(cardId, task.id)} />
 				{task.name}{' '}
 				<a href="#" className="checklist__task--remove" />
 			</li>
 		));
-
+		
 		return (
 			
 			<div className="checklist">
@@ -37,5 +39,5 @@ export default connect((state, { cardId }) =>
 	({
 		tasks: state.filter(p => p.id === cardId)[0].tasks
 	}),
-	{ addTask }
+	{ addTask, toggleTask }
 )(CheckList);

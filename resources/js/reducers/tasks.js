@@ -4,11 +4,12 @@ export default (state = [], action) => {
     switch (action.type) {
         case TOGGLETASK:
             return state.map(p =>
-                p.id === action.id ?
+                p.id === action.taskId ?
                     task(p, action) :
                     p
             );
 
+            
         case ADDTASK: {
             let max = 0;
             state.forEach(p => {
