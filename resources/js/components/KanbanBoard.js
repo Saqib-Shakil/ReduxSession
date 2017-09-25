@@ -9,18 +9,16 @@ class KanbanBoard extends Component {
       <div className="app">
         <List id='todo'
               title="To Do"
-              cards={this.props.cards.filter((card) => card.status === "todo")} />
+              status={"todo"} />
         <List id='in-progress'
               title="In Progress"
-              cards={this.props.cards.filter((card) => card.status === "in-progress")} />
+              status={"in-progress"} />
         <List id='done'
               title='Done'
-              cards={this.props.cards.filter((card) => card.status === "done")} />
+              status={"done"} />
       </div>
     );
   }
 };
 
-export default connect(
-  (state)=>({ cards: state })
-)(KanbanBoard);
+export default connect()(KanbanBoard);

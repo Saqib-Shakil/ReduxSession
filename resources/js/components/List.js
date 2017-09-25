@@ -1,17 +1,15 @@
 
 import React, { Component } from 'react';
 import Card from './Card';
+import { connect } from 'react-redux';
 
 class List extends Component {
 	render() {
 		
-		var cards = this.props.cards.map((card) => {
-			return <Card key={card.id} 
+		var cards = this.props.cards.map((card, key) => {
+			return <Card key={key} 
 					id={card.id}
-                   	title={card.title}
-                   	description={card.description}
-					color={card.color}
-                   	tasks={card.tasks} />
+                   	/>
 		});
 
 		return (
@@ -23,4 +21,9 @@ class List extends Component {
 	}
 };
 
-export default List;
+let mapStateToProps = (state, ownProps) => {
+	return {
+		cards: state.filter(p => p.status === ownProps.status)
+	}
+}
+export default connect(mapStateToProps)(List);

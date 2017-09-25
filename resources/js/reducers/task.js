@@ -4,8 +4,8 @@ export default (state = {}, action) => {
     switch (action.type) {
         case TOGGLETASK:
             return {
-                ...task,
-                done: !task.done
+                ...state,
+                done: !state.done
             }
         default:
             return state;

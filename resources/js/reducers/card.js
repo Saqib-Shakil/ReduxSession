@@ -1,16 +1,17 @@
 import { EXPANDCARD, TOGGLETASK } from '../actions'
 import tasks from './tasks'
+
 export default (state = {}, action) => {
     switch (action.type) {
         case EXPANDCARD:
             return {
-                ...card,
-                expanded: !card.expanded
+                ...state,
+                expanded: !state.expanded
             }
 
         case TOGGLETASK:
             return {
-                ...card,
+                ...state,
                 tasks: tasks(state.tasks, action)
             }
         default:
