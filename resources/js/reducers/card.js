@@ -1,4 +1,4 @@
-import { EXPANDCARD, TOGGLETASK } from '../actions'
+import { EXPANDCARD, TOGGLETASK, ADDTASK } from '../actions'
 import tasks from './tasks'
 
 export default (state = {}, action) => {
@@ -10,6 +10,7 @@ export default (state = {}, action) => {
             }
 
         case TOGGLETASK:
+        case ADDTASK:
             return {
                 ...state,
                 tasks: tasks(state.tasks, action)
