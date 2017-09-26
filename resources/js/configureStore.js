@@ -1,13 +1,17 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import cards from './reducers/cards'
+import allreducers from './reducers/allreducers'
 import throttle from 'lodash/throttle'
+import thunkMiddleware from 'redux-thunk'
+
 export default function configureStore(preloadedState) {
   const session = sessionStorage.getItem('sessionState')
   const state = session && JSON.parse(session)
   let store = createStore(
-    cards,
+    allreducers,
     state || preloadedState,
-    window['__REDUX_DEVTOOLS_EXTENSION__']()
+    compose(
+      applyMiddleware(thunkMiddleware),
+      window['__REDUX_DEVTOOLS_EXTENSION__']())
   )
 
   store.subscribe(

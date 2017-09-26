@@ -37,7 +37,7 @@ class CheckList extends Component {
 
 export default connect((state, { cardId }) =>
 	({
-		tasks: state.filter(p => p.id === cardId)[0].tasks
+		tasks: state.cards.filter(p => p.id === cardId)[0].tasks
 	}),
 	{ addTask, toggleTask }
 )(CheckList);

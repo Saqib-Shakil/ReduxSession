@@ -47,7 +47,7 @@ class Card extends Component {
 
 export default connect(
 	(state, { id }) => {
-		let card = state.filter(p => p.id === id)[0]
+		let card = state.cards.filter(p => p.id === id)[0]
 		return {
 			title: card.title,
 			description: card.description,
